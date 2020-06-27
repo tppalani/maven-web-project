@@ -1,23 +1,4 @@
-#!groovy
 
-node {
-	   
-	stage('Checkout'){
 
-          checkout scm
-       }
 
-       stage('BuildArtifact'){
-
-         // bat 'mvn install'
-	       
-	       sh 'mvn clean'
-       }
-	   
-      stage('Sonar') {
-                    //add stage sonar
-                   // sh 'mvn sonar:sonar'
-                }
-	
-       
-}
+checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'GitHub', url: 'https://github.com/tppalani/maven-web-project.git']]])
